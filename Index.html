@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Praticità | Restaurante Italiano</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --wine: #5b1f26;
+      --wine-dark: #41161c;
+      --cream: #f7f1e8;
+      --gold: #c7a56a;
+      --olive: #5c6b42;
+      --text: #2d2622;
+      --muted: #6a625d;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(35, 20, 16, 0.12);
+      --radius: 22px;
+      --container: 1180px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: #fcfaf7;
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    .container {
+      width: min(100% - 2rem, var(--container));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: var(--wine-dark);
+      color: rgba(255,255,255,0.85);
+      font-size: 0.92rem;
+      padding: 0.75rem 0;
+    }
+
+    .topbar-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(247, 241, 232, 0.82);
+      border-bottom: 1px solid rgba(91, 31, 38, 0.08);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--wine);
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.4rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      color: var(--text);
+      transition: 0.25s;
+    }
+
+    .nav-links a:hover { color: var(--wine); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 0.95rem 1.45rem;
+      font-weight: 600;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+    }
+
+    .btn-primary {
+      background: var(--wine);
+      color: var(--white);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--wine);
+      border: 1px solid rgba(91, 31, 38, 0.18);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      font-size: 1.6rem;
+      color: var(--wine);
+      cursor: pointer;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(120deg, rgba(65,22,28,0.92), rgba(91,31,38,0.8)),
+        url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80') center/cover;
+      color: var(--white);
+      padding: 6rem 0 5rem;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: auto auto -80px -40px;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(199,165,106,0.25), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+      line-height: 1.05;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 6vw, 5.4rem);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      max-width: 640px;
+      color: rgba(255,255,255,0.86);
+      font-size: 1.08rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .hero-info {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-info .pill {
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.9);
+      font-size: 0.95rem;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 28px;
+      padding: 1.4rem;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card img {
+      border-radius: 20px;
+      height: 390px;
+      object-fit: cover;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .hero-card h3 {
+      font-size: 2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-card p {
+      margin: 0;
+      color: rgba(255,255,255,0.82);
+      font-size: 0.98rem;
+    }
+
+    section { padding: 5.5rem 0; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      align-items: end;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      color: var(--wine);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-head p {
+      max-width: 680px;
+      color: var(--muted);
+    }
+
+    .about-grid,
+    .reservation-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .about-image img,
+    .reservation-image img {
+      border-radius: 28px;
+      min-height: 420px;
+      object-fit: cover;
+      box-shadow: var(--shadow);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .feature-card,
+    .menu-card,
+    .testimonial,
+    .contact-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(91, 31, 38, 0.06);
+    }
+
+    .feature-card h3,
+    .menu-card h3,
+    .testimonial h3,
+    .reservation-text h3 {
+      font-size: 1.8rem;
+      color: var(--wine);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p,
+    .menu-card p,
+    .testimonial p,
+    .contact-card p,
+    .reservation-text p {
+      color: var(--muted);
+    }
+
+    .menu-section {
+      background: linear-gradient(to bottom, #fff, var(--cream));
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+    }
+
+    .menu-card img {
+      height: 240px;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 1rem;
+    }
+
+    .price {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--olive);
+      font-weight: 700;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr 0.7fr;
+      gap: 1rem;
+    }
+
+    .gallery img {
+      height: 260px;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .testimonials-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+
+    .reservation-box {
+      background: var(--white);
+      border-radius: 28px;
+      padding: 1.7rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(91, 31, 38, 0.08);
+    }
+
+    form {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid rgba(91, 31, 38, 0.12);
+      border-radius: 16px;
+      padding: 1rem;
+      font: inherit;
+      background: #fffdfb;
+      color: var(--text);
+      outline: none;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--wine);
+      box-shadow: 0 0 0 4px rgba(91, 31, 38, 0.08);
+    }
+
+    footer {
+      background: var(--wine-dark);
+      color: rgba(255,255,255,0.78);
+      padding: 4rem 0 1.5rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    footer h3, footer h4 {
+      color: var(--white);
+      margin-bottom: 0.9rem;
+    }
+
+    footer h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.78);
+      display: block;
+      margin-bottom: 0.65rem;
+    }
+
+    footer a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.3rem;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-grid,
+      .reservation-grid,
+      .menu-grid,
+      .gallery,
+      .testimonials-grid,
+      .contact-grid,
+      .footer-grid,
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 1rem;
+        left: 1rem;
+        background: rgba(247, 241, 232, 0.98);
+        border: 1px solid rgba(91, 31, 38, 0.08);
+        border-radius: 20px;
+        padding: 1rem;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.active { display: flex; }
+      .menu-toggle { display: block; }
+      .navbar .btn-primary { display: none; }
+      .hero-card img { height: 300px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-content">
+      <span>Aberto de terça a domingo • 18h às 23h30</span>
+      <span>Reservas: (48) 99999-9999 • Centro, Tubarão - SC</span>
+    </div>
+  </div>
+
+  <header>
+    <div class="container navbar">
+      <a href="#home" class="brand">Praticità</a>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#sobre">Sobre</a>
+        <a href="#menu">Cardápio</a>
+        <a href="#galeria">Ambiente</a>
+        <a href="#reservas">Reservas</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <a href="#reservas" class="btn btn-primary">Reservar mesa</a>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="fade-up">
+        <span class="eyebrow">Restaurante Italiano Autêntico</span>
+        <h1>Sabores da Itália em uma experiência elegante e acolhedora.</h1>
+        <p>
+          Massas artesanais, molhos preparados lentamente, ingredientes frescos e um ambiente pensado para encontros memoráveis.
+          O Praticità une tradição italiana com um toque contemporâneo.
+        </p>
+        <div class="hero-actions">
+          <a href="#menu" class="btn btn-primary">Ver cardápio</a>
+          <a href="#sobre" class="btn btn-secondary">Conhecer o restaurante</a>
+        </div>
+        <div class="hero-info">
+          <span class="pill">🍝 Massas frescas</span>
+          <span class="pill">🍷 Carta de vinhos</span>
+          <span class="pill">🕯️ Ambiente sofisticado</span>
+        </div>
+      </div>
+
+      <div class="hero-card fade-up">
+        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80" alt="Prato italiano sofisticado" />
+        <h3>Especial da casa</h3>
+        <p>Tagliatelle ao molho de cogumelos trufados, parmesão curado e ervas frescas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="container about-grid">
+      <div class="about-image fade-up">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80" alt="Ambiente interno do restaurante" />
+      </div>
+      <div class="fade-up">
+        <div class="section-head">
+          <div>
+            <h2>Tradição, elegância e hospitalidade</h2>
+            <p>
+              Inspirado nas trattorias italianas, o Praticità foi criado para oferecer uma experiência gastronômica refinada sem perder o calor humano.
+            </p>
+          </div>
+        </div>
+        <div class="features">
+          <div class="feature-card">
+            <h3>Receitas autênticas</h3>
+            <p>Preparos clássicos italianos com apresentação contemporânea.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Ingredientes frescos</h3>
+            <p>Seleção cuidadosa de massas, queijos, ervas e vinhos.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Atmosfera especial</h3>
+            <p>Ideal para jantares românticos, reuniões e ocasiões especiais.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu-section" id="menu">
+    <div class="container">
+      <div class="section-head fade-up">
+        <div>
+          <h2>Destaques do cardápio</h2>
+          <p>Uma seleção de pratos que representam a essência do Praticità.</p>
+        </div>
+        <a href="#reservas" class="btn btn-secondary">Fazer reserva</a>
+      </div>
+
+      <div class="menu-grid">
+        <article class="menu-card fade-up">
+          <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=1200&q=80" alt="Prato de ravioli" />
+          <h3>Ravioli della Casa</h3>
+          <p>Massa recheada com ricota e espinafre, molho de manteiga e sálvia.</p>
+          <span class="price">R$ 54,90</span>
+        </article>
+
+        <article class="menu-card fade-up">
+          <img src="https://images.unsplash.com/photo-1521389508051-d7ffb5dc8df4?auto=format&fit=crop&w=1200&q=80" alt="Risoto italiano" />
+          <h3>Risotto Funghi</h3>
+          <p>Arroz arbóreo cremoso com mix de cogumelos e toque de vinho branco.</p>
+          <span class="price">R$ 61,90</span>
+        </article>
+
+        <article class="menu-card fade-up">
+          <img src="https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=1200&q=80" alt="Massa italiana" />
+          <h3>Spaghetti al Pomodoro</h3>
+          <p>Molho de tomates rústicos, manjericão fresco e parmesão finalizado na mesa.</p>
+          <span class="price">R$ 47,90</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria">
+    <div class="container">
+      <div class="section-head fade-up">
+        <div>
+          <h2>Ambiente que convida a ficar</h2>
+          <p>Detalhes aconchegantes, iluminação intimista e uma identidade visual sofisticada.</p>
+        </div>
+      </div>
+      <div class="gallery">
+        <img class="fade-up" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80" alt="Mesa posta em restaurante" />
+        <img class="fade-up" src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=900&q=80" alt="Taças de vinho" />
+        <img class="fade-up" src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=900&q=80" alt="Interior sofisticado do restaurante" />
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head fade-up">
+        <div>
+          <h2>O que nossos clientes dizem</h2>
+          <p>Experiências que transformam um jantar em lembrança.</p>
+        </div>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial fade-up">
+          <h3>“Impecável”</h3>
+          <p>Atendimento excelente, pratos muito bem servidos e um ambiente sofisticado sem ser exagerado.</p>
+        </div>
+        <div class="testimonial fade-up">
+          <h3>“Melhor massa da cidade”</h3>
+          <p>Os ingredientes são frescos e o sabor é marcante. Dá vontade de voltar toda semana.</p>
+        </div>
+        <div class="testimonial fade-up">
+          <h3>“Perfeito para ocasiões especiais”</h3>
+          <p>Fui comemorar aniversário e a experiência foi incrível do começo ao fim.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reservas">
+    <div class="container reservation-grid">
+      <div class="reservation-text fade-up">
+        <div class="section-head">
+          <div>
+            <h2>Reserve sua mesa</h2>
+            <p>
+              Garanta sua experiência no Praticità. Preencha os dados e nossa equipe confirmará a disponibilidade.
+            </p>
+          </div>
+        </div>
+        <div class="reservation-box">
+          <h3>Atendimento personalizado</h3>
+          <p>Para datas especiais, harmonizações ou reservas em grupo, fale com nossa equipe.</p>
+          <form id="reservationForm">
+            <div class="form-row">
+              <input type="text" id="name" placeholder="Seu nome" required>
+              <input type="email" id="email" placeholder="Seu e-mail" required>
+            </div>
+            <div class="form-row">
+              <input type="date" id="date" required>
+              <input type="time" id="time" required>
+            </div>
+            <div class="form-row">
+              <select id="guests" required>
+                <option value="">Número de pessoas</option>
+                <option>2 pessoas</option>
+                <option>4 pessoas</option>
+                <option>6 pessoas</option>
+                <option>8+ pessoas</option>
+              </select>
+              <input type="tel" id="phone" placeholder="Telefone" required>
+            </div>
+            <textarea id="message" rows="4" placeholder="Alguma observação especial?"></textarea>
+            <button type="submit" class="btn btn-primary">Solicitar reserva</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="reservation-image fade-up">
+        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80" alt="Prato italiano sofisticado servido em restaurante" />
+      </div>
+    </div>
+  </section>
+
+  <section id="contato">
+    <div class="container">
+      <div class="section-head fade-up">
+        <div>
+          <h2>Venha nos visitar</h2>
+          <p>Estamos prontos para receber você com a melhor experiência italiana da cidade.</p>
+        </div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card fade-up">
+          <h3>Endereço</h3>
+          <p>Rua das Oliveiras, 125<br>Centro, Tubarão - SC</p>
+        </div>
+        <div class="contact-card fade-up">
+          <h3>Horários</h3>
+          <p>Terça a domingo<br>18h às 23h30</p>
+        </div>
+        <div class="contact-card fade-up">
+          <h3>Contato</h3>
+          <p>(48) 99999-9999<br>contato@praticita.com.br</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>Praticità</h3>
+          <p>Uma experiência italiana autêntica, elegante e memorável para cada ocasião.</p>
+        </div>
+        <div>
+          <h4>Navegação</h4>
+          <a href="#sobre">Sobre</a>
+          <a href="#menu">Cardápio</a>
+          <a href="#galeria">Ambiente</a>
+          <a href="#reservas">Reservas</a>
+        </div>
+        <div>
+          <h4>Contato</h4>
+          <a href="tel:+5548999999999">(48) 99999-9999</a>
+          <a href="mailto:contato@praticita.com.br">contato@praticita.com.br</a>
+          <a href="#">Instagram</a>
+        </div>
+        <div>
+          <h4>Funcionamento</h4>
+          <p>Terça a domingo<br>18h às 23h30</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 Praticità. Todos os direitos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const reservationForm = document.getElementById('reservationForm');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    reservationForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      alert(`Obrigado, ${name || 'cliente'}! Sua solicitação de reserva foi enviada com sucesso.`);
+      reservationForm.reset();
+    });
+  </script>
+</body>
+                        </html>
