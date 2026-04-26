@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Praticità | Restaurante Italiano</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --wine: #5b1f26;
@@ -22,9 +25,15 @@
       --container: 1180px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -33,8 +42,15 @@
       line-height: 1.6;
     }
 
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
     .container {
       width: min(100% - 2rem, var(--container));
@@ -43,7 +59,7 @@
 
     .topbar {
       background: var(--wine-dark);
-      color: rgba(255,255,255,0.85);
+      color: rgba(255, 255, 255, 0.85);
       font-size: 0.92rem;
       padding: 0.75rem 0;
     }
@@ -92,7 +108,9 @@
       transition: 0.25s;
     }
 
-    .nav-links a:hover { color: var(--wine); }
+    .nav-links a:hover {
+      color: var(--wine);
+    }
 
     .btn {
       display: inline-flex;
@@ -109,7 +127,7 @@
 
     .btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
     }
 
     .btn-primary {
@@ -136,7 +154,7 @@
       position: relative;
       overflow: hidden;
       background:
-        linear-gradient(120deg, rgba(65,22,28,0.92), rgba(91,31,38,0.8)),
+        linear-gradient(120deg, rgba(65, 22, 28, 0.92), rgba(91, 31, 38, 0.8)),
         url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80') center/cover;
       color: var(--white);
       padding: 6rem 0 5rem;
@@ -148,7 +166,7 @@
       inset: auto auto -80px -40px;
       width: 260px;
       height: 260px;
-      background: radial-gradient(circle, rgba(199,165,106,0.25), transparent 70%);
+      background: radial-gradient(circle, rgba(199, 165, 106, 0.25), transparent 70%);
       border-radius: 50%;
     }
 
@@ -166,11 +184,13 @@
       font-size: 0.9rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.78);
+      color: rgba(255, 255, 255, 0.78);
       margin-bottom: 1rem;
     }
 
-    h1, h2, h3 {
+    h1,
+    h2,
+    h3 {
       font-family: 'Cormorant Garamond', serif;
       line-height: 1.05;
     }
@@ -182,7 +202,7 @@
 
     .hero p {
       max-width: 640px;
-      color: rgba(255,255,255,0.86);
+      color: rgba(255, 255, 255, 0.86);
       font-size: 1.08rem;
       margin-bottom: 1.8rem;
     }
@@ -203,15 +223,15 @@
     .hero-info .pill {
       padding: 0.7rem 1rem;
       border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: rgba(255,255,255,0.9);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.9);
       font-size: 0.95rem;
     }
 
     .hero-card {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.16);
       border-radius: 28px;
       padding: 1.4rem;
       backdrop-filter: blur(10px);
@@ -233,11 +253,13 @@
 
     .hero-card p {
       margin: 0;
-      color: rgba(255,255,255,0.82);
+      color: rgba(255, 255, 255, 0.82);
       font-size: 0.98rem;
     }
 
-    section { padding: 5.5rem 0; }
+    section {
+      padding: 5.5rem 0;
+    }
 
     .section-head {
       display: flex;
@@ -376,7 +398,9 @@
       gap: 1rem;
     }
 
-    input, textarea, select {
+    input,
+    textarea,
+    select {
       width: 100%;
       border: 1px solid rgba(91, 31, 38, 0.12);
       border-radius: 16px;
@@ -387,14 +411,16 @@
       outline: none;
     }
 
-    input:focus, textarea:focus, select:focus {
+    input:focus,
+    textarea:focus,
+    select:focus {
       border-color: var(--wine);
       box-shadow: 0 0 0 4px rgba(91, 31, 38, 0.08);
     }
 
     footer {
       background: var(--wine-dark);
-      color: rgba(255,255,255,0.78);
+      color: rgba(255, 255, 255, 0.78);
       padding: 4rem 0 1.5rem;
     }
 
@@ -405,7 +431,8 @@
       margin-bottom: 2rem;
     }
 
-    footer h3, footer h4 {
+    footer h3,
+    footer h4 {
       color: var(--white);
       margin-bottom: 0.9rem;
     }
@@ -416,15 +443,17 @@
     }
 
     footer a {
-      color: rgba(255,255,255,0.78);
+      color: rgba(255, 255, 255, 0.78);
       display: block;
       margin-bottom: 0.65rem;
     }
 
-    footer a:hover { color: var(--gold); }
+    footer a:hover {
+      color: var(--gold);
+    }
 
     .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
       padding-top: 1.3rem;
       text-align: center;
       font-size: 0.95rem;
@@ -442,6 +471,7 @@
     }
 
     @media (max-width: 980px) {
+
       .hero-grid,
       .about-grid,
       .reservation-grid,
@@ -469,14 +499,29 @@
         box-shadow: var(--shadow);
       }
 
-      .nav-links.active { display: flex; }
-      .menu-toggle { display: block; }
-      .navbar .btn-primary { display: none; }
-      .hero-card img { height: 300px; }
-      .form-row { grid-template-columns: 1fr; }
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .navbar .btn-primary {
+        display: none;
+      }
+
+      .hero-card img {
+        height: 300px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="topbar">
     <div class="container topbar-content">
@@ -506,7 +551,8 @@
         <span class="eyebrow">Restaurante Italiano Autêntico</span>
         <h1>Sabores da Itália em uma experiência elegante e acolhedora.</h1>
         <p>
-          Massas artesanais, molhos preparados lentamente, ingredientes frescos e um ambiente pensado para encontros memoráveis.
+          Massas artesanais, molhos preparados lentamente, ingredientes frescos e um ambiente pensado para encontros
+          memoráveis.
           O Praticità une tradição italiana com um toque contemporâneo.
         </p>
         <div class="hero-actions">
@@ -521,7 +567,8 @@
       </div>
 
       <div class="hero-card fade-up">
-        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80" alt="Prato italiano sofisticado" />
+        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80"
+          alt="Prato italiano sofisticado" />
         <h3>Especial da casa</h3>
         <p>Tagliatelle ao molho de cogumelos trufados, parmesão curado e ervas frescas.</p>
       </div>
@@ -531,14 +578,16 @@
   <section id="sobre">
     <div class="container about-grid">
       <div class="about-image fade-up">
-        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80" alt="Ambiente interno do restaurante" />
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80"
+          alt="Ambiente interno do restaurante" />
       </div>
       <div class="fade-up">
         <div class="section-head">
           <div>
             <h2>Tradição, elegância e hospitalidade</h2>
             <p>
-              Inspirado nas trattorias italianas, o Praticità foi criado para oferecer uma experiência gastronômica refinada sem perder o calor humano.
+              Inspirado nas trattorias italianas, o Praticità foi criado para oferecer uma experiência gastronômica
+              refinada sem perder o calor humano.
             </p>
           </div>
         </div>
@@ -572,21 +621,24 @@
 
       <div class="menu-grid">
         <article class="menu-card fade-up">
-          <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=1200&q=80" alt="Prato de ravioli" />
+          <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=1200&q=80"
+            alt="Prato de ravioli" />
           <h3>Ravioli della Casa</h3>
           <p>Massa recheada com ricota e espinafre, molho de manteiga e sálvia.</p>
           <span class="price">R$ 54,90</span>
         </article>
 
         <article class="menu-card fade-up">
-          <img src="https://images.unsplash.com/photo-1521389508051-d7ffb5dc8df4?auto=format&fit=crop&w=1200&q=80" alt="Risoto italiano" />
+          <img src="./assets/risoto.png"
+            alt="Risoto italiano" />
           <h3>Risotto Funghi</h3>
           <p>Arroz arbóreo cremoso com mix de cogumelos e toque de vinho branco.</p>
           <span class="price">R$ 61,90</span>
         </article>
 
         <article class="menu-card fade-up">
-          <img src="https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=1200&q=80" alt="Massa italiana" />
+          <img src="https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=1200&q=80"
+            alt="Massa italiana" />
           <h3>Spaghetti al Pomodoro</h3>
           <p>Molho de tomates rústicos, manjericão fresco e parmesão finalizado na mesa.</p>
           <span class="price">R$ 47,90</span>
@@ -604,9 +656,15 @@
         </div>
       </div>
       <div class="gallery">
-        <img class="fade-up" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80" alt="Mesa posta em restaurante" />
-        <img class="fade-up" src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=900&q=80" alt="Taças de vinho" />
-        <img class="fade-up" src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=900&q=80" alt="Interior sofisticado do restaurante" />
+        <img class="fade-up"
+          src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80"
+          alt="Mesa posta em restaurante" />
+        <img class="fade-up"
+          src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=900&q=80"
+          alt="Taças de vinho" />
+        <img class="fade-up"
+          src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=900&q=80"
+          alt="Interior sofisticado do restaurante" />
       </div>
     </div>
   </section>
@@ -676,7 +734,8 @@
       </div>
 
       <div class="reservation-image fade-up">
-        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80" alt="Prato italiano sofisticado servido em restaurante" />
+        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80"
+          alt="Prato italiano sofisticado servido em restaurante" />
       </div>
     </div>
   </section>
@@ -768,4 +827,5 @@
     });
   </script>
 </body>
+
 </html>
